@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Результат</title>
+</head>
+<body>
+<h1>Результат расчета</h1>
+<p>Формула: (c - b) / a</p>
+<p>Ваш результат: x = <span th:text="${result}"></span></p>
+
+<h2>Отчет</h2>
+<p th:text="${report}"></p>
+
+<h2>Координаты на оси:</h2>
+<p>Точка: (x, y) = (<span th:text="${result}"></span>, <span th:text="${y}"></span>)</p>
+
+<canvas id="graphCanvas" width="500" height="500"></canvas>
+<script>
+  const canvas = document.getElementById("graphCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Нарисовать оси
+  ctx.beginPath();
+  ctx.moveTo(250, 0);
+  ctx.lineTo(250, 500);
+  ctx.moveTo(0, 250);
+  ctx.lineTo(500, 250);
+  ctx.stroke();
+
+  // Нарисовать точку
+  const x = parseFloat("[[${result}]]");
+  const y = parseFloat("[[${y}]]");
+
+  // Переместим координаты к центру оси
+  const canvasX = 250 + x * 10; // Масштабирование по оси X
+  const canvasY = 250 - y * 10; // Масштабирование по оси Y
+
+  ctx.beginPath();
+  ctx.arc(canvasX, canvasY, 5, 0, 2 * Math.PI);
+  ctx.fill();
+
+  // Подписать точку
+  ctx.fillText(`(${x}, ${y})`, canvasX + 10, canvasY - 10);
+</script>
+</body>
+</html>

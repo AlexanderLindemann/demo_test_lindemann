@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Расчет Формулы</title>
+</head>
+<body>
+<h1>Введите значения a, b, c и y</h1>
+<form action="/calculate" method="post">
+    <label for="a">Введите a:</label>
+    <input type="number" step="any" name="a" required><br>
+
+    <label for="b">Введите b:</label>
+    <input type="number" step="any" name="b" required><br>
+
+    <label for="c">Введите c:</label>
+    <input type="number" step="any" name="c" required><br>
+
+    <label for="y">Введите y:</label>
+    <input type="number" step="any" name="y" required><br>
+
+    <label for="round">Округлить результат до десятых:</label>
+    <input type="checkbox" name="round"><br><br>
+
+    <button type="submit">Расчет</button>
+</form>
+</body>
+</html>
